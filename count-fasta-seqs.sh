@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/sh 
+# AUTHORS: Kiara Rojas Videa
 
 # How this script should behave:
 #
-# INPUT:   Paths to one or more fasta sequence files
+# INPUT:   Paths to one or miore fasta sequence files
 #
 # OUTPUT:  For each file, it should write a line with the number of sequences
 #          in the file, a space, and then the file NAME (NOT the path!), and a
@@ -63,7 +64,7 @@
 # files that were 'given to' this script. The variable "$@" will be very useful
 # for this. Let's take a look at what it gives us:
 
-echo "$@"
+#echo "$@"
 
 # How are you going to work with each file path?
 # HINT: for loop (remember "for do done"?)
@@ -94,3 +95,12 @@ echo "$@"
 #
 # ADD YOUR CODE BELOW:
 
+total=0
+for file in "$@"
+do 
+	count=$(grep -c "^>" "$file")
+	filename=$(basename "$file")
+	echo "$count $filename"
+	total=$((total + count))
+done 
+echo "$total" 
